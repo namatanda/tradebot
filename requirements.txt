@@ -1,0 +1,17 @@
+backtrader
+pyfolio
+yfinance
+ta 
+python-dotenv
+yfinance
+alpaca-py
+pandas
+pytest
+black
+mypy
+ruff
+pytest-cov
+pluggy
+pre-commit
+
+
