@@ -13,5 +13,5 @@ ruff
 pytest-cov
 pluggy
 pre-commit
-
+configparser
 

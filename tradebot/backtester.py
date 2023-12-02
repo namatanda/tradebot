@@ -5,7 +5,7 @@ Module for running backtests on trading strategies.
 
 import backtrader as bt
 import pyfolio as pf
-from trade_strategy import MyStrategy  # Import your strategy
+from tradebot.trade_strategy import MyStrategy  # Import your strategy
 
 def run_backtest(data):
     """
