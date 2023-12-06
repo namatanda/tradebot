@@ -14,11 +14,7 @@ from data_processor import process_data
 
 logger = logging.getLogger(__name__)
 
-class MyStrategy(bt.Strategy):
-   def next(self):
-    pass 
-
-class MAcrossover(bt.Strategy):
+class MACrossover(bt.Strategy):
 
     params = (('pfast', 20), ('pslow', 50), ('myparam', 27),('exitbars', 3),)
 
@@ -40,6 +36,9 @@ class MAcrossover(bt.Strategy):
 
         self.slow_sma = bt.indicators.MovingAverageSimple(self.datas[0], period=self.params.pslow)
         self.fast_sma = bt.indicators.MovingAverageSimple(self.datas[0], period=self.params.pfast)
+
+        self.crossover = bt.indicators.CrossOver(self.slow_sma, self.fast_sma)
+        self.signal_add(bt.SIGNAL_LONG, self.crossover)
 
     def notify_order(self, order):
         if order.status in [order.Submitted, order.Accepted]:
@@ -94,7 +93,7 @@ if __name__ == '__main__':
     
     cerebro.adddata(data)
 
-    cerebro.addstrategy(MAcrossover)
+    cerebro.addstrategy(MACrossover)
 
     cerebro.addsizer(bt.sizers.SizerFix, stake=1)
 
